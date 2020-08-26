@@ -1,5 +1,5 @@
 from django.db import models
-
+import os
 from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth import get_user_model
@@ -25,7 +25,7 @@ class GoodsModel(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товари'
 
-    photo = models.ImageField(upload_to='magazin/img', default='', blank=True)
+    photo = models.ImageField(upload_to=os.path.join('magazin', 'img'), default='', blank=True)
     name = models.CharField(max_length=20)
     type = models.ForeignKey(TypeModel, on_delete=models.CASCADE)
     price = models.IntegerField()

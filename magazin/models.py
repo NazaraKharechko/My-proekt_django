@@ -1,8 +1,9 @@
 from django.db import models
-import os
+
 from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 import os
 
 Users = get_user_model()
@@ -37,3 +38,25 @@ class GoodsModel(models.Model):
     # users = models.ManyToManyField(Users, related_name='goods')
 
 
+class UserProfileRegister(models.Model):
+    class Meta:
+        db_table = 'user_register'
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class BayGoodsModel(models.Model):
+    class Meta:
+        db_table = 'bay_goods'
+
+    city = models.CharField(max_length=20)
+    street = models.CharField(max_length=20)
+    house = models.IntegerField()
+    apartment = models.IntegerField()
+    delivery = models.BooleanField()
+
+
+# class Shop(models.Model):
+#     name = models.CharField(max_length=100)
+#     location = models.PointField()
+#     address = models.CharField(max_length=100)
+#     city = models.CharField(max_length=50)

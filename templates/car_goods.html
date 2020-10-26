@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} MY MAGAS | CAR_GOODS {% endblock %}
+{% block content %}
+{% for good in goods %}
+    <br>
+<div class="d-flex align-items-stretch">
+    <div  class="card "  style="width: 18rem;">
+          <img src="{{ MEDIA_URL }}{{good.photo.url }}" class="card-img-top" alt="{{good.name}}">
+          <div class="card-body">
+            <div class="alert alert-dark" role="alert">
+                    Goods => {{ good.name}}
+            </div>
+              <div class="alert alert-dark" role="alert">
+                   Price goods => {{ good.price }}
+            </div>
+              <div class="alert alert-dark" role="alert">
+                    Type goods => <a href="#" class="alert-link">{{ good.type.type }}</a>. Go to the goods type.
+              </div>
+          </div>
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo{{ good.id }}">Open opus</button>
+                <div id="demo{{ good.id }}" class="collapse"><p class="text-center" >{{ good.description }}</p>
+                    <a href="http://127.0.0.1:8000/bay/"  role="button"   class="btn btn-info btn-lg btn-block">Buy</a>
+                </div>
+    </div>
+</div>
+    <br>
+    <hr>
+{% endfor %}
+{% endblock %}
